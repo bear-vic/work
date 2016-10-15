@@ -1,34 +1,34 @@
-1.ÒıÈëdbutilsºÍc3p0¼°ojdbc jar°ü
+1.å¼•å…¥dbutilså’Œc3p0åŠojdbc jaråŒ…
 2. 
-<!-- c3p0Á¬½Ó³ØÅäÖÃ -->
+<!-- c3p0è¿æ¥æ± é…ç½® -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<!-- ÓÃ»§Ãû -->
+		<!-- ç”¨æˆ·å -->
 		<property name="user" value="root" />
-		<!-- ÓÃ»§ÃÜÂë -->
+		<!-- ç”¨æˆ·å¯†ç  -->
 		<property name="password" value="123" />
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/schoolbargin" />
-		<!--Á¬½Ó³ØÖĞ±£ÁôµÄ×î´óÁ¬½ÓÊı¡£Ä¬ÈÏÖµ: 15 -->
+		<!--è¿æ¥æ± ä¸­ä¿ç•™çš„æœ€å¤§è¿æ¥æ•°ã€‚é»˜è®¤å€¼: 15 -->
 		<property name="maxPoolSize" value="20" />
-		<!-- Á¬½Ó³ØÖĞ±£ÁôµÄ×îĞ¡Á¬½ÓÊı£¬Ä¬ÈÏÎª£º3 -->
+		<!-- è¿æ¥æ± ä¸­ä¿ç•™çš„æœ€å°è¿æ¥æ•°ï¼Œé»˜è®¤ä¸ºï¼š3 -->
 		<property name="minPoolSize" value="2" />
-		<!-- ³õÊ¼»¯Á¬½Ó³ØÖĞµÄÁ¬½ÓÊı£¬È¡ÖµÓ¦ÔÚminPoolSizeÓëmaxPoolSizeÖ®¼ä£¬Ä¬ÈÏÎª3 -->
+		<!-- åˆå§‹åŒ–è¿æ¥æ± ä¸­çš„è¿æ¥æ•°ï¼Œå–å€¼åº”åœ¨minPoolSizeä¸maxPoolSizeä¹‹é—´ï¼Œé»˜è®¤ä¸º3 -->
 		<property name="initialPoolSize" value="2" />
-		<!--×î´ó¿ÕÏĞÊ±¼ä£¬60ÃëÄÚÎ´Ê¹ÓÃÔòÁ¬½Ó±»¶ªÆú¡£ÈôÎª0ÔòÓÀ²»¶ªÆú¡£Ä¬ÈÏÖµ: 0 -->
+		<!--æœ€å¤§ç©ºé—²æ—¶é—´ï¼Œ60ç§’å†…æœªä½¿ç”¨åˆ™è¿æ¥è¢«ä¸¢å¼ƒã€‚è‹¥ä¸º0åˆ™æ°¸ä¸ä¸¢å¼ƒã€‚é»˜è®¤å€¼: 0 -->
 		<property name="maxIdleTime" value="60"></property>
-		<!-- µ±Á¬½Ó³ØÁ¬½ÓºÄ¾¡Ê±£¬¿Í»§¶Ëµ÷ÓÃgetConnection()ºóµÈ´ı»ñÈ¡ĞÂÁ¬½ÓµÄÊ±¼ä£¬³¬Ê±ºó½«Å×³öSQLException£¬ÈçÉèÎª0ÔòÎŞÏŞÆÚµÈ´ı¡£µ¥Î»ºÁÃë¡£Ä¬ÈÏ: 
+		<!-- å½“è¿æ¥æ± è¿æ¥è€—å°½æ—¶ï¼Œå®¢æˆ·ç«¯è°ƒç”¨getConnection()åç­‰å¾…è·å–æ–°è¿æ¥çš„æ—¶é—´ï¼Œè¶…æ—¶åå°†æŠ›å‡ºSQLExceptionï¼Œå¦‚è®¾ä¸º0åˆ™æ— é™æœŸç­‰å¾…ã€‚å•ä½æ¯«ç§’ã€‚é»˜è®¤: 
 			0 -->
 		<property name="checkoutTimeout" value="3000" />
-		<!--µ±Á¬½Ó³ØÖĞµÄÁ¬½ÓºÄ¾¡µÄÊ±ºòc3p0Ò»´ÎÍ¬Ê±»ñÈ¡µÄÁ¬½ÓÊı¡£Ä¬ÈÏÖµ: 3 -->
+		<!--å½“è¿æ¥æ± ä¸­çš„è¿æ¥è€—å°½çš„æ—¶å€™c3p0ä¸€æ¬¡åŒæ—¶è·å–çš„è¿æ¥æ•°ã€‚é»˜è®¤å€¼: 3 -->
 		<property name="acquireIncrement" value="2" />
-		<!--c3p0È«¾ÖµÄPreparedStatements»º´æµÄ´óĞ¡¡£Èç¹ûmaxStatementsÓëmaxStatementsPerConnection¾ùÎª0£¬Ôò»º´æ²»ÉúĞ§£¬Ö»ÒªÓĞÒ»¸ö²»Îª0£¬ÔòÓï¾äµÄ»º´æ¾ÍÄÜÉúĞ§¡£Èç¹ûÄ¬ÈÏÖµ: 
+		<!--c3p0å…¨å±€çš„PreparedStatementsç¼“å­˜çš„å¤§å°ã€‚å¦‚æœmaxStatementsä¸maxStatementsPerConnectionå‡ä¸º0ï¼Œåˆ™ç¼“å­˜ä¸ç”Ÿæ•ˆï¼Œåªè¦æœ‰ä¸€ä¸ªä¸ä¸º0ï¼Œåˆ™è¯­å¥çš„ç¼“å­˜å°±èƒ½ç”Ÿæ•ˆã€‚å¦‚æœé»˜è®¤å€¼: 
 			0 -->
 		<property name="maxStatements" value="100">
 		</property>
-		<!--maxStatementsPerConnection¶¨ÒåÁËÁ¬½Ó³ØÄÚµ¥¸öÁ¬½ÓËùÓµÓĞµÄ×î´ó»º´æstatementsÊı¡£Ä¬ÈÏÖµ: 0 -->
+		<!--maxStatementsPerConnectionå®šä¹‰äº†è¿æ¥æ± å†…å•ä¸ªè¿æ¥æ‰€æ‹¥æœ‰çš„æœ€å¤§ç¼“å­˜statementsæ•°ã€‚é»˜è®¤å€¼: 0 -->
 		<property name="maxStatementsPerConnection" value="0"></property>
 	</bean>
-	3 ÅäÖÃbean
+	3 é…ç½®bean
 	<bean id="queryRunner" class="org.apache.commons.dbutils.QueryRunner">
 	<constructor-arg type="javax.sql.DataSource" ref="dataSource"></constructor-arg>
 	</bean>
