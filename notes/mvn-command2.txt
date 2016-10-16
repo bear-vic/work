@@ -1,0 +1,21 @@
+#You may not always need to start up the Alfresco server and leave it running. If you just want to build the project, run the unit tests, and package the AMP, you can run:
+
+mvn package
+#If you want to install the AMP into your local Maven repository you can run:
+
+mvn install
+#You may have noticed that the default project includes a simple unit test. By default, Maven will automatically run the unit tests in your project. You can see this happening in the output:
+
+#-------------------------------------------------------
+# T E S T S
+#-------------------------------------------------------
+#Running org.alfresco.demoamp.test.DemoComponentTest
+#It's a good practice to make sure that your project always includes unit tests and to run them every time you build. Many organizations run CI (Continuous Integration) tools that depend on this being the case. If you don't want to run tests for some reason you can skip them, like this:
+
+mvn install -DskipTests=true
+#If you want to delete all of the compiled artifacts that Maven created and start fresh you can run:
+
+mvn clean
+#If you also want to delete the embedded database, Alfresco content store, indexes, and log files that were created by running the test Alfresco server, you can run:
+
+mvn clean -Ppurge

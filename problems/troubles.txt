@@ -1,0 +1,3 @@
+ The magic is in the id and parent attributes. The id attribute follows a naming convention. The convention is:
+
+webscript.package.service-id.method   service-id£¿
