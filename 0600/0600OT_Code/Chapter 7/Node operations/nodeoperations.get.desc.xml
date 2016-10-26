@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Node related things</shortname>
+  <description>Do some node related things such as find node, check permission, get Path of a node, get property of a node, modify property on a node.</description>
+  <url>/example/nodeinaction</url>
+  <format default="xml">any</format>
+  <authentication>user</authentication>
+</webscript>

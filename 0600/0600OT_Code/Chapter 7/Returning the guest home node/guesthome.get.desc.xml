@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Get guest home</shortname>
+  <description>Get guest home noderef</description>
+  <url>/example/getGuestHome</url>
+  <format default="xml">any</format>
+  <authentication>user</authentication>
+</webscript>

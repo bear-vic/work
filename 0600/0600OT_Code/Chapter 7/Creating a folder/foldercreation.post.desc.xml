@@ -1,0 +1,7 @@
+<webscript>
+  <shortname>Create folder</shortname>
+  <description>Create folder under company home</description>
+  <url>/example/createfolder?foldername={foldername}</url>
+  <format default="xml">any</format>
+  <authentication>user</authentication>
+</webscript>

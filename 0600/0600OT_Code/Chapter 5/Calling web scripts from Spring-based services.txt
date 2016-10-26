@@ -1,0 +1,32 @@
+Below are the required code snippets as provided in the chapter.
+
+1.RestTemplate entry in spring context file.
+<bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
+
+2.Inject RestTemplate in your spring class as shown in example below.
+<bean id="httpCommService" class="com.test.HTTPCallService">
+<property name="restTemplate" value="restTemplate" />
+</bean>
+
+3.In the java class define the setter method for restTemplate.
+private RestTemplate restTemplate;
+public void setRestTemplate(RestTemplate restTemplate) {
+  this.restTemplate = restTemplate;
+}
+
+4.Code snippet to invoke helloworld webscript
+
+// setup authentication
+String plainCredentials = "admin:admin";
+byte[] plainCredBytes = plainCredentials.getBytes();
+byte[] base64CredBytes = Base64.encodeBase64(plainCredBytes);
+String base64Credentials = new String(base64CredBytes);
+
+// setup request headers
+HttpHeaders reqHeaders = new HttpHeaders();
+reqHeaders.add("Authorization", "Basic " + base64Credentials);
+HttpEntity<String> requestEntity = new HttpEntity<String>(reqHeaders);
+
+// Execute method
+ResponseEntity<String> responseEntity = restTemplate.exchange("http://localhost:8080/alfresco/service/helloworld?name=Ramesh", HttpMethod.GET, requestEntity, String.class);
+System.out.println("Response:"+responseEntity.getBody());

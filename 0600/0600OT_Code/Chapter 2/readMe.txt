@@ -1,0 +1,2 @@
+The code files are available under the folder name matching the section title in the chapter.
+For example, Code files related to "Creating your first web script in Alfresco" section are present under "Creating your first web script in Alfresco" folder.
