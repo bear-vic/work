@@ -14,11 +14,22 @@
 function handleResult(data){
 var result=data;
 //alert(data);
-/* console.log( data);
-for(var i=0;i<data.length;i++){
+ //console.log( data.result);
+ var list=$.parseJSON(data.result);
+/*for(var i=0;i<data.length;i++){
 	console.log(data[i].goods.gId);
 } */
-
+	console.log(list[1].goods.gId);
+	$("#t1").html("");
+	var a = "";
+	$.each(list,function(i,n){
+	a+="<tr><td>"+list[i].goods.gId+"</td>"
+	+"<td>"+list[i].goods.gName+"</td>"
+	+"<td>"+list[i].goods.gPrice+"</td></tr>";
+	});
+	$("#t1").append(
+		a
+		);
 }
 	$(function() {
 	var user={
@@ -27,7 +38,7 @@ for(var i=0;i<data.length;i++){
 };
 		$("#btn2").click(function() {
 			$.post(
-			"/schoolbargin/goods/lookmine",
+			"/schoolbargin/goods/clookall",
 			{test:"^^^"},
 			 function(data, status) {
 			 handleResult(data);
@@ -62,5 +73,15 @@ for(var i=0;i<data.length;i++){
      <label for='utel'>手机号：</label><input type='text' id='utel'><br>
      <input id="btn2" type='button' value='提交' >
 </form>
+
+<table id="t1">
+<tr>
+<td>id</td>
+<td>名称</td>
+<td>价格</td>
+</tr>
+
+
+</table>
 </body>
 </html>
