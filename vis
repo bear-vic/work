@@ -1,0 +1,67 @@
+	/**
+	 * @return 不重复的WorkflowInstance，null else; 通过uniqueName匹配参与的workflows
+	 */
+	// private Set<WorkflowInstance> matchByName(String uniqueName) throws
+	// Exception {
+	// Set<WorkflowInstance> mWf = null;// 存放匹配workflow
+	// List<WorkflowInstance> allWf = workflowService.getWorkflows();//
+	// 所有workflow
+	// if (!MContainerUtils.checkEmpty(allWf)) {
+	// mWf = new HashSet<WorkflowInstance>();
+	// for (WorkflowInstance wfs : allWf) {
+	// WorkflowTask wft = workflowService.getStartTask(wfs.getId());
+	//
+	// Set<QName> sq = wft.getProperties().keySet();
+	// if (sq.contains(WorkflowModel.ASSOC_ASSIGNEE)) {
+	// NodeRef node1 = (NodeRef)
+	// wft.getProperties().get(WorkflowModel.ASSOC_ASSIGNEE);
+	// if (node1 != null) {
+	// Serializable s1 =
+	// nodeService.getProperties(node1).get(ContentModel.PROP_USERNAME);
+	// if (MStringUtils.checkEqual(s1, uniqueName)) {
+	// mWf.add(wfs);
+	// }
+	// }
+	// }
+	// if (sq.contains(WorkflowModel.ASSOC_ASSIGNEES)) {
+	// ArrayList<NodeRef> node2 = (ArrayList<NodeRef>) wft.getProperties()
+	// .get(WorkflowModel.ASSOC_ASSIGNEES);
+	// if (!MContainerUtils.checkEmpty(node2)) {
+	// for (NodeRef n2 : node2) {
+	// Serializable s2 =
+	// nodeService.getProperties(n2).get(ContentModel.PROP_USERNAME);
+	// if (MStringUtils.checkEqual(s2, uniqueName)) {
+	// mWf.add(wfs);
+	// }
+	// }
+	// }
+	// }
+	// if (sq.contains(WorkflowModel.ASSOC_GROUP_ASSIGNEE)) {
+	// NodeRef node3 = (NodeRef)
+	// wft.getProperties().get(WorkflowModel.ASSOC_ASSIGNEE);
+	// if (node3 != null) {
+	// Serializable s3 =
+	// nodeService.getProperties(node3).get(ContentModel.PROP_USERNAME);
+	// if (MStringUtils.checkEqual(s3, uniqueName)) {
+	// mWf.add(wfs);
+	// }
+	// }
+	// }
+	// if (sq.contains(WorkflowModel.ASSOC_GROUP_ASSIGNEES)) {
+	// ArrayList<NodeRef> node4 = (ArrayList<NodeRef>) wft.getProperties()
+	// .get(WorkflowModel.ASSOC_GROUP_ASSIGNEES);
+	// logger.debug(node4);
+	// if (!MContainerUtils.checkEmpty(node4)) {
+	// for (NodeRef n4 : node4) {
+	// Serializable s4 =
+	// nodeService.getProperties(n4).get(ContentModel.PROP_USERNAME);
+	// if (MStringUtils.checkEqual(s4, uniqueName)) {
+	// mWf.add(wfs);
+	// }
+	// }
+	// }
+	// }
+	// }
+	// }
+	// return mWf;
+	// }

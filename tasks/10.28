@@ -1,0 +1,5 @@
+… https://community.alfresco.com/thread/210357-alfrescoutilajaxjsonget-results-in-a-not-well-formed-exception
+[4:58:20 PM] kevin: https://books.google.com.hk/books?id=mEYHT4IPAzAC&pg=PT428&lpg=PT428&dq=alfresco+ajax+example&source=bl&ots=-k3A5Y_WqO&sig=SPbhnxz9T_mhJCQ-FDaCXRLZDzA&hl=zh-CN&sa=X&ved=0ahUKEwik-Mz5j_3PAhUBVZQKHTg5D9cQ6AEIbDAJ#v=onepage&q=alfresco%20ajax%20example&f=false
+[6:45:21 PM] kevin: maven jetty 热部署
+[7:00:07 PM] kevin: clean tomcat:redeploy -Dmaven.test.skip=true
+[7:12:10 PM] kevin: http://wcl2184-163-com.iteye.com/blog/1457798
