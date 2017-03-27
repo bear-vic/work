@@ -1,0 +1,116 @@
+<script  type="text/javascript" src="${url.context}/res/jquery/jquery-1.6.2.js" >
+</script>
+<script type="text/javascript" src="${url.context}/res/css/bootstrap.js">
+</script>
+<link href="${url.context}/res/css/bootstrap.css">
+</link>
+<div class="">
+		<h1 >项目进度查看表</h1>
+		<#if result??>	<h2>暂无项目</h2> </#if> 
+</div>
+<div class="container-fluid text-center">
+			<select id="projects" >
+			<option value="">请选择项目</option>
+			<#if exprojects??>
+			<#list exprojects as exp>
+			<option value="${exp.workflowInstanceId}">${exp.xmmc!""}(${exp.xmbh!""})</option>
+			</#list>
+			</#if>
+			</select>
+			<span id="prompt"  hidden="true">查找中,请稍后...</span>
+</div>
+<div class="">
+		<table  id="">
+			<thead>
+				<tr class=" ">
+					<th class="  ">对比项</th>
+					<th class="  ">开发截止日 </th>
+					<th class="  ">测试截止日</th>
+					<th class="  ">准生产截止日</th>
+					<th class="  ">投产截止日</th>
+				<tr>
+			</thead>
+			<tbody class="" id="persontasks">
+			</tbody>
+		</table>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#projects").change(
+			function(){			
+				var projectid=$("#projects").find("option:selected").val();
+				if(projectid){
+					$("#prompt").show();
+					getData(projectid);
+				}	
+			}		
+		);
+	});
+	function getData(id){
+		Alfresco.util.Ajax.request(
+				{
+					method:"post",
+					//method:"get",
+					url:"/alfresco/s/associatetask",
+					dataObj:{"xmbh":id},
+					successCallback:{fn:function(data){
+						console.log("successCallback="+data);
+						handleResult(data);
+					},
+					scope:this
+					},
+					failureCallback:{
+						fn:function(data){
+							console.log("failureCallback="+data);
+							handleResult(data);
+						},
+						scope:this
+					}
+				}
+		);
+	};
+	 function handleResult(data){
+		 $("#persontasks").empty();
+			var content="";
+			for(var x in data){
+				console.log(x);
+			}
+			console.log(data.serverResponse.responseText);
+			var jsonResult=data.serverResponse.responseText;
+			var pro=$.parseJSON(data.serverResponse.responseText);
+			if(pro.result){
+				var status=pro.result;
+				content+="<tr><td colspan='5'>"+status.code+"     "+status.value+"</td></tr>";
+				$("#persontasks").append(content);
+			}else if(pro.persontasks){
+				var tasks=pro.persontasks;
+				$.each(tasks,function(i,n){
+					var owner="",developDue="",
+						testDue="",preproductionDue="",productionDue="";
+					if(n.owner){
+					owner=n.owner;
+					}
+					if(n.developDue){
+					developDue=	n.developDue;
+						
+					}
+					if(n.testDue){
+						testDue=n.testDue;
+					}
+					if(n.preproductionDue){
+						preproductionDue=n.preproductionDue;
+					}	
+					if(n.productionDue){
+					productionDue=n.productionDue;	
+					}	
+					content+="<tr><td>"+owner+"</td>"
+					+"<td>"+developDue+"</td>"
+					+"<td>"+testDue+"</td>"
+					+"<td>"+productionDue+"</td>"
+					+"<td>"+preproductionDue+"</td></tr>";
+					});
+				$("#persontasks").append(content);
+				}
+		$("#prompt").hide();
+	};
+</script>

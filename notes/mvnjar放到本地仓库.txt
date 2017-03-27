@@ -12,3 +12,7 @@
 
 2.使用如下命令
 mvn install:install-file -Dfile=（您的jar包）.jar -DgroupId=（group ID） -DartifactId=(artifactId) -Dversion=（version） -Dpackaging=jar
+
+
+
+mvn install:install-file -Dfile=<path-to-file> -DpomFile=<path-to-pomfile>

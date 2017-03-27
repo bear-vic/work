@@ -1,0 +1,120 @@
+<#assign id = args.htmlid>
+<div class="yui-g">
+		<h1 >项目进度查看表</h1>
+		<#if result??>	<h2>暂无项目</h2> </#if> 
+</div>
+<div class="yui-g">
+			<select id="projects" >
+			<option value="">请选择项目</option>
+			<#if exprojects??>
+			<#list exprojects as exp>
+			<option value="${exp.workflowInstanceId}">${exp.xmmc!""}(${exp.xmbh!""})</option>
+			</#list>
+			</#if>
+			</select>
+			<span id="prompt"  hidden="true">查找中,请稍后...</span>
+</div>
+<div class="yui-g">
+		<table summary id="yuievtautoid-0">
+		<colgroup>
+			<col>
+			<col>
+			<col>
+			<col>
+			<col>
+		</colgroup>
+			<thead>
+				<tr class="yui-dt-first yui-dt-last">
+					<th class="yui-dt0-th-${id} yui-dt-resizeable yui-dt-first">对比项</th>
+					<th class="yui-dt0-th-${id} yui-dt-resizeable yui-dt-first">开发截止日 </th>
+					<th class="yui-dt0-th-${id} yui-dt-resizeable yui-dt-first">测试截止日</th>
+					<th class="yui-dt0-th-${id} yui-dt-resizeable yui-dt-first">准生产截止日</th>
+					<th class="yui-dt0-th-${id} yui-dt-resizeable yui-dt-first">投产截止日</th>
+				<tr>
+			</thead>
+			<tbody class="yui-dt-message" style="display: none;" id="persontasks">
+			</tbody>
+		</table>
+</div>
+<script  type="text/javascript" src="${url.context}/res/jquery/jquery-1.6.2.js" ></script>
+
+<script type="text/javascript">
+	$(function(){
+		$("#projects").change(
+			function(){			
+				var projectid=$("#projects").find("option:selected").val();
+				if(projectid){
+					$("#prompt").show();
+					getData(projectid);
+				}	
+			}		
+		);
+	});
+	function getData(id){
+		Alfresco.util.Ajax.request(
+				{
+					method:"post",
+					//method:"get",
+					url:"/alfresco/s/associatetask",
+					dataObj:{"xmbh":id},
+					successCallback:{fn:function(data){
+						console.log("successCallback="+data);
+						handleResult(data);
+					},
+					scope:this
+					},
+					failureCallback:{
+						fn:function(data){
+							console.log("failureCallback="+data);
+							handleResult(data);
+						},
+						scope:this
+					}
+				}
+		);
+	};
+	 function handleResult(data){
+		 $("#persontasks").empty();
+			var content="";
+			for(var x in data){
+				console.log(x);
+			}
+			console.log(data.serverResponse.responseText);
+			var jsonResult=data.serverResponse.responseText;
+			var pro=$.parseJSON(data.serverResponse.responseText);
+			if(pro.result){
+				var status=pro.result;
+				content+="<tr><td colspan='5'>"+status.code+"     "+status.value+"</td></tr>";
+				$("#persontasks").append(content);
+			}else if(pro.persontasks){
+				var tasks=pro.persontasks;
+				$.each(tasks,function(i,n){
+					var owner="",developDue="",
+						testDue="",preproductionDue="",productionDue="";
+					if(n.owner){
+					owner=n.owner;
+					}
+					if(n.developDue){
+					developDue=	n.developDue;
+						
+					}
+					if(n.testDue){
+						testDue=n.testDue;
+					}
+					if(n.preproductionDue){
+						preproductionDue=n.preproductionDue;
+					}	
+					if(n.productionDue){
+					productionDue=n.productionDue;	
+					}	
+					content+="<tr><td>"+owner+"</td>"
+					+"<td>"+developDue+"</td>"
+					+"<td>"+testDue+"</td>"
+					+"<td>"+preproductionDue+"</td>"
+					+"<td>"+productionDue+"</td></tr>";
+					});
+				$("#persontasks").append(content);
+				}
+		$("#prompt").hide();
+	};
+</script>
